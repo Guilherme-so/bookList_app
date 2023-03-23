@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../modals/livro_modal.dart';
 import '../widgets/divided_line.dart';
+import 'lista.dart';
 
 class ListaDeLivros extends StatefulWidget {
   const ListaDeLivros({super.key});
@@ -39,23 +40,7 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                     ),
                   ),
                   const DividedLine(),
-                  ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, i) => const Padding(
-                            padding: EdgeInsets.only(left: 40),
-                            child: ListTile(
-                              title: Text("Livro qualquer"),
-                              subtitle: Text(
-                                'about some books',
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ),
-                      separatorBuilder: (context, i) => const Divider(
-                            color: Colors.black12,
-                            thickness: 1,
-                          ),
-                      itemCount: 5),
+                  ListaLivros(bookList: bookListFake),
                   const DividedLine(),
                 ],
               ),
