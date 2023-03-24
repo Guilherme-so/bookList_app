@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../modals/livro_modal.dart';
+import 'package:lista_de_livros/modals/livro_modal.dart';
 import '../widgets/divided_line.dart';
 import 'lista.dart';
 
@@ -10,6 +10,8 @@ class ListaDeLivros extends StatefulWidget {
 }
 
 class _ListaDeLivrosState extends State<ListaDeLivros> {
+  final List<LivroModal> minhaLista = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +35,17 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                           ),
                         ),
                         FloatingActionButton.small(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/form');
+                          },
                           child: const Icon(Icons.add),
                         ),
                       ],
                     ),
                   ),
                   const DividedLine(),
-                  ListaLivros(bookList: bookListFake),
-                  const DividedLine(),
+                  ListaLivros(bookList: minhaLista),
+                  if (minhaLista.isNotEmpty) const DividedLine(),
                 ],
               ),
             ),

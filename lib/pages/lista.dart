@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_livros/modals/livro_modal.dart';
 
 // import '../modals/livro_modal.dart';
 // import '../modals/livro_modal.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 class ListaLivros extends StatelessWidget {
   const ListaLivros({required this.bookList, super.key});
 
-  final List bookList;
+  final List<LivroModal> bookList;
 
   @override
   Widget build(BuildContext context) {
