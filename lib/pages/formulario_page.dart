@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lista_de_livros/modals/livro_modal.dart';
 
@@ -18,7 +20,7 @@ class _FormularioPageState extends State<FormularioPage> {
 
   @override
   void initState() {
-    livro = widget.livro ?? LivroModal();
+    livro = widget.livro ?? LivroModal(id: Random().nextInt(999));
     super.initState();
   }
 

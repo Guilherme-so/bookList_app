@@ -62,6 +62,11 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                         minhaLista.add(livro);
                       });
                     },
+                    handleDelete: (livro) {
+                      setState(() {
+                        minhaLista.remove(livro);
+                      });
+                    },
                   ),
                   if (minhaLista.isNotEmpty) const DividedLine(),
                 ],

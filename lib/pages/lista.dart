@@ -8,10 +8,14 @@ import 'formulario_page.dart';
 
 class ListaLivros extends StatelessWidget {
   const ListaLivros(
-      {required this.bookList, required this.handleSubmit, super.key});
+      {required this.bookList,
+      required this.handleSubmit,
+      this.handleDelete,
+      super.key});
 
   final Set<LivroModal> bookList;
   final Function(LivroModal) handleSubmit;
+  final Function(LivroModal)? handleDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +47,12 @@ class ListaLivros extends StatelessWidget {
                 livro.description,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
+              ),
+              trailing: GestureDetector(
+                child: const Icon(Icons.delete),
+                onTap: () {
+                  handleDelete!(livro);
+                },
               ),
             ),
           );
