@@ -22,9 +22,10 @@ class ListaLivros extends StatelessWidget {
               title: Text(
                 livro.title,
                 style: TextStyle(
-                    fontSize: 24,
-                    color: livro.lido ? Colors.grey : Colors.black,
-                    decoration: livro.lido ? TextDecoration.lineThrough : null),
+                  fontSize: 24,
+                  color: livro.lido ? Colors.grey : Colors.black,
+                  decoration: livro.lido ? TextDecoration.lineThrough : null,
+                ),
               ),
               subtitle: Text(
                 livro.description,

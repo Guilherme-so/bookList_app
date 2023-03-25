@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_livros/modals/livro_modal.dart';
 import '../widgets/divided_line.dart';
+import 'formulario_page.dart';
 import 'lista.dart';
 
 class ListaDeLivros extends StatefulWidget {
@@ -36,7 +37,16 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                         ),
                         FloatingActionButton.small(
                           onPressed: () {
-                            Navigator.of(context).pushNamed('/form');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    FormularioPage(handleSubmit: (livro) {
+                                  setState(() {
+                                    minhaLista.add(livro);
+                                  });
+                                }),
+                              ),
+                            );
                           },
                           child: const Icon(Icons.add),
                         ),
