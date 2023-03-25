@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_livros/modals/livro_modal.dart';
 
+import 'formulario_page.dart';
+
 // import '../modals/livro_modal.dart';
 // import '../modals/livro_modal.dart';
 
 class ListaLivros extends StatelessWidget {
-  const ListaLivros({required this.bookList, super.key});
+  const ListaLivros(
+      {required this.bookList, required this.handleSubmit, super.key});
 
-  final List<LivroModal> bookList;
+  final Set<LivroModal> bookList;
+  final Function(LivroModal) handleSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +19,18 @@ class ListaLivros extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, i) {
-          final livro = bookList[i];
+          final livro = bookList.elementAt(i);
           return Padding(
             padding: const EdgeInsets.only(left: 40),
             child: ListTile(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => FormularioPage(
+                        livro: livro, handleSubmit: handleSubmit),
+                  ),
+                );
+              },
               title: Text(
                 livro.title,
                 style: TextStyle(

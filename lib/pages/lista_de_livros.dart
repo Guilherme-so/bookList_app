@@ -11,7 +11,7 @@ class ListaDeLivros extends StatefulWidget {
 }
 
 class _ListaDeLivrosState extends State<ListaDeLivros> {
-  final List<LivroModal> minhaLista = [];
+  final Set<LivroModal> minhaLista = {};
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,13 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    FormularioPage(handleSubmit: (livro) {
-                                  setState(() {
-                                    minhaLista.add(livro);
-                                  });
-                                }),
+                                builder: (context) => FormularioPage(
+                                  handleSubmit: (livro) {
+                                    setState(() {
+                                      minhaLista.add(livro);
+                                    });
+                                  },
+                                ),
                               ),
                             );
                           },
@@ -54,7 +55,14 @@ class _ListaDeLivrosState extends State<ListaDeLivros> {
                     ),
                   ),
                   const DividedLine(),
-                  ListaLivros(bookList: minhaLista),
+                  ListaLivros(
+                    bookList: minhaLista,
+                    handleSubmit: (livro) {
+                      setState(() {
+                        minhaLista.add(livro);
+                      });
+                    },
+                  ),
                   if (minhaLista.isNotEmpty) const DividedLine(),
                 ],
               ),

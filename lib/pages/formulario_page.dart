@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lista_de_livros/modals/livro_modal.dart';
 
 class FormularioPage extends StatefulWidget {
-  const FormularioPage({required this.handleSubmit, super.key});
+  const FormularioPage({this.handleSubmit, this.livro, super.key});
 
-  final Function handleSubmit;
+  final Function(LivroModal)? handleSubmit;
+  final LivroModal? livro;
 
   @override
   State<FormularioPage> createState() => _FormularioPageState();
@@ -12,7 +13,14 @@ class FormularioPage extends StatefulWidget {
 
 class _FormularioPageState extends State<FormularioPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final LivroModal livro = LivroModal();
+
+  late LivroModal livro;
+
+  @override
+  void initState() {
+    livro = widget.livro ?? LivroModal();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +115,7 @@ class _FormularioPageState extends State<FormularioPage> {
 
                       if (form.validate()) {
                         form.save();
-                        widget.handleSubmit(livro);
+                        widget.handleSubmit!(livro);
                         Navigator.of(context).pop();
                       }
                     },
